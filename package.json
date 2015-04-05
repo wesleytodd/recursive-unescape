@@ -1,0 +1,26 @@
+{
+  "name": "recursive-unescape",
+  "version": "1.0.0",
+  "description": "Recursivly unescape an object or array",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wesleytodd/recursive-unescape.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "keywords": [
+    "unescape",
+    "html",
+    "recursive"
+  ],
+  "author": "Wes Todd",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  },
+  "dependencies": {
+    "lodash.unescape": "^3.0.0"
+  }
+}

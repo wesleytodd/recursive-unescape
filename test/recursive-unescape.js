@@ -5,12 +5,12 @@ var assert = require('assert');
 var htmlString = 'My <span>html</span> string.';
 var escapedHtmlString = 'My &lt;span&gt;html&lt;/span&gt; string.';
 
-describe('recursive-unescape', function() {
-	it('should unescape strings', function() {
+describe('recursive-unescape', function () {
+	it('should unescape strings', function () {
 		assert.equal(_unescape(escapedHtmlString), htmlString);
 	});
 
-	it('should unescape objects', function() {
+	it('should unescape objects', function () {
 		assert.equal(
 			_unescape({
 				foo: escapedHtmlString
@@ -18,12 +18,12 @@ describe('recursive-unescape', function() {
 			htmlString
 		);
 	});
-	
-	it('should unescape arrays', function() {
+
+	it('should unescape arrays', function () {
 		assert.equal(_unescape([escapedHtmlString])[0], htmlString);
 	});
 
-	it('should unescape nested objects', function() {
+	it('should unescape nested objects', function () {
 		assert.equal(_unescape({
 			obj: {
 				nested: escapedHtmlString
@@ -36,7 +36,7 @@ describe('recursive-unescape', function() {
 		}).obj.nestedArr[0], htmlString);
 	});
 
-	it('should unescape nested arrays', function() {
+	it('should unescape nested arrays', function () {
 		assert.equal(_unescape([
 			[escapedHtmlString]
 		])[0][0], htmlString);
@@ -45,7 +45,7 @@ describe('recursive-unescape', function() {
 		])[0].foo[0], htmlString);
 	});
 
-	it('should unescape objects with undefined or null values', function() {
+	it('should unescape objects with undefined or null values', function () {
 		var e = _unescape({
 			myNull: null,
 			myUndefined: undefined,
@@ -56,7 +56,7 @@ describe('recursive-unescape', function() {
 		assert.equal(e.foo, htmlString);
 	});
 
-	it('should unescape complex objects', function() {
+	it('should unescape complex objects', function () {
 		var e = _unescape({
 			foo: 'foo',
 			bar: {
@@ -64,7 +64,7 @@ describe('recursive-unescape', function() {
 				num: 1
 			},
 			empty: '',
-			arr: [1,2,escapedHtmlString],
+			arr: [1, 2, escapedHtmlString],
 			unsafe: escapedHtmlString,
 			myNull: null,
 			nested: {

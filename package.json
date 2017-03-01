@@ -1,6 +1,6 @@
 {
   "name": "recursive-unescape",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Recursivly unescape an object or array",
   "main": "index.js",
   "repository": {
@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "happiness && mocha",
-	"prepublish": "npm t",
-	"postpublish": "git push && git push --tags"
+    "prepublish": "npm t",
+    "postpublish": "git push && git push --tags"
   },
   "keywords": [
     "unescape",

@@ -1,21 +1,30 @@
 var _unescape = require('lodash.unescape');
 
-var ue = module.exports = function(data) {
-	if (typeof data === 'undefined' || data === null) {
-		return null;
+var ue = module.exports = function (input) {
+	// Null or undefined, just return input
+	if (typeof input === 'undefined' || input === null) {
+		return input;
 	}
 
-	if (data instanceof Array) {
-		for (var i = 0; i < data.length; i++) {
-			data[i] = ue(data[i]);
+	var output;
+	var i;
+	var type = typeof input;
+
+	if (input instanceof Array) {
+		output = [];
+		for (i = 0; i < input.length; i++) {
+			output[i] = ue(input[i]);
 		}
-	} else if (typeof data === 'object') {
-		for (var i in data) {
-			data[i] = ue(data[i]);
+	} else if (type === 'object') {
+		output = {};
+		for (i in input) {
+			output[i] = ue(input[i]);
 		}
-	} else if (typeof data === 'string') {
-		data = _unescape(data);
+	} else if (type === 'string') {
+		output = _unescape(input);
+	} else {
+		output = input;
 	}
 
-	return data;
+	return output;
 };

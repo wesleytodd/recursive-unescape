@@ -1,11 +1,11 @@
-var _unescape = require('../'),
-	assert = require('assert');
+/* global describe, it */
+var _unescape = require('../');
+var assert = require('assert');
 
-var htmlString = 'My <span>html</span> string.',
-	escapedHtmlString = 'My &lt;span&gt;html&lt;/span&gt; string.';
+var htmlString = 'My <span>html</span> string.';
+var escapedHtmlString = 'My &lt;span&gt;html&lt;/span&gt; string.';
 
 describe('recursive-unescape', function() {
-
 	it('should unescape strings', function() {
 		assert.equal(_unescape(escapedHtmlString), htmlString);
 	});
@@ -92,4 +92,18 @@ describe('recursive-unescape', function() {
 		assert.equal(e.nested.arr[1].code, 2);
 	});
 
+	it('should not mutate the input', function () {
+		var o = { foo: escapedHtmlString };
+		assert(_unescape(o) !== o);
+		assert.equal(_unescape(o).foo, htmlString);
+
+		var a = [escapedHtmlString];
+		assert(_unescape(a) !== a);
+		assert.equal(_unescape(a)[0], htmlString);
+	});
+
+	it('should return null or undefined when passed either', function () {
+		assert.equal(_unescape(), undefined);
+		assert.equal(_unescape(null), null);
+	});
 });
